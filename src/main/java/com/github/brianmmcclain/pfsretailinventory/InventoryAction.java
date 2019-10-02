@@ -19,6 +19,10 @@ public class InventoryAction {
                 return productsByTag(tagRepo, this.value);
             case "tagsbyproduct":
                 return tagsByProduct(productRepo, this.value);
+            case "inventory":
+                return dumpInventory(productRepo);
+            case "tags":
+                return dumpTags(tagRepo);
         }
 
         return "Error";
@@ -36,6 +40,14 @@ public class InventoryAction {
         } else {
             return "Error";
         }
+    }
+
+    public String dumpInventory(ProductRepository productRepository) {
+        return buildJson(productRepository.findAll());
+    }
+
+    public String dumpTags(TagRepository tagRepo) {
+        return buildJson(tagRepo.findAll());
     }
 
     private String buildJson(Object o) {
