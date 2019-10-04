@@ -22,7 +22,22 @@ public class Product {
     @JoinTable(name = "product_tag")
     public List<Tag> tags;
 
+    @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof Product){
+            Product b = (Product) o;
+            return this.id.equals(b.id);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }
